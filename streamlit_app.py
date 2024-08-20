@@ -1,7 +1,7 @@
 import streamlit as st
 from card_deck import CardDeck
 
-st.title("Poker ♠️ Bot.")
+st.title("Poker 🃟 Bot.")
 st.write(
     "Welcome to the minimalist Poker Bot. Designed by Elias Devadoss, Himal Pandey, and Marcus Lee."
 )
@@ -34,21 +34,21 @@ col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="t
 with col1:
     st.subheader("Flop")
     if st.session_state.flop:
-        st.title(flop[0])#, divider="violet")
+        st.header(flop[0], divider="violet")
     else:
-        st.title("🂠")#, divider="violet")
+        st.header("♛⨷௹", divider="violet")
 with col2:
     st.subheader("")
     if st.session_state.flop:
-        st.title(flop[1])#, divider="violet")
+        st.header(flop[1], divider="violet")
     else:
-        st.title("🃟")#, divider="violet")
+        st.header("☗☽?⨔◉", divider="violet")
 with col3:
     st.subheader("")
     if st.session_state.flop:
-        st.title(flop[2])#, divider="violet")
+        st.header(flop[2], divider="violet")
     else:
-        st.title("🃋")#, divider="violet")
+        st.header("⫷⫸⊡⊒⊠⊡", divider="violet")
 with col4:
     st.subheader("Turn")
     st.header(turn[0], divider="violet")
