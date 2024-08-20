@@ -14,14 +14,17 @@ with col1:
     st.text_area("No Label", value="9♠️", height=100, key=1, label_visibility="hidden")
 
 with col2:
+    st.header("")
     st.text_area("No Label", value="8♠️", key=2, label_visibility="hidden")
 
 with col3:
+    st.header("")
     st.text_area("No Label", value="7♠️", height=100, key=3, label_visibility="hidden")
 
 with col4:
-    st.text_area("Turn", value="6♠️", height=100, key=4, label_visibility="hidden")
+    st.header("Turn")
+    st.text_area("No Label", value="6♠️", height=100, key=4, label_visibility="hidden")
 
 with col5:
-    st.text_area("River", value="5♠️", height=100, key=5, label_visibility="hidden")
-
+    st.header("River")
+    st.text_area("No Label", value="5♠️", height=100, key=5, label_visibility="hidden")
