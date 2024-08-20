@@ -49,5 +49,5 @@ st.radio("No Label", options, horizontal=True)
 
 
 reset = st.button("New Hand", type="primary")
-if reset:
-    deck = CardDeck()
+#if reset:
+#    deck = CardDeck()
