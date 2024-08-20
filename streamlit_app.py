@@ -41,23 +41,13 @@ with col5:
 
 
 facing_bet = False
-opt_col1, opt_col2, opt_col3 = st.columns(3, gap="small", vertical_alignment="top")
 if(facing_bet==False):
-    with opt_col1:
-        check = st.button("Check")
-    with opt_col2:
-        open_small = st.button("Bet x")
-    with opt_col3:
-        open_big = st.button("Bet y")   
+    options = ["Check", "Bet x", "Bet y"]
 else:
-    with opt_col1:
-        fold = st.button("Fold")
-    with opt_col2:
-        call = st.button("Call")
-    with opt_col3:
-        raise_bet = st.button("Raise 3x")  
+    options = ["Fold", "Call", "Raise 3x"]
+st.radio(options, horizontal=True)
 
 
-reset = st.button("RESET", type="primary")
+reset = st.button("New Hand", type="primary")
 if reset:
     deck = CardDeck()
