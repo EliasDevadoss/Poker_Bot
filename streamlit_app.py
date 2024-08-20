@@ -54,3 +54,4 @@ confirm = st.button("Confirm")
 reset = st.button("New Hand", type="primary")
 if reset:
     st.session_state.deck = CardDeck()
+    st.rerun
