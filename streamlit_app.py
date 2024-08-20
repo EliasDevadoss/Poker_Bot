@@ -6,21 +6,12 @@ st.write(
 )
 
 
-tabs_font_css = """
-<style>
-div[class*="stWrite"] label p {
-  font-size: 40px;
-}
-</style>
-"""
-
-st.write(tabs_font_css, unsafe_allow_html=True)
 
 col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
 
 with col1:
     st.header("Flop")
-    st.write("9♠️")
+    st.header("9♠️")
     #st.text_area("No Label", value="9♠️", key=1, label_visibility="hidden")
 
 with col2:
