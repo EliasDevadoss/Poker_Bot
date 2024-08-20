@@ -12,7 +12,7 @@ def display_players(hero, villain):
     with play_col5:
         st.header("|⨔|", divider="violet")
 
-def display_board(flop, turn, river)
+def display_board(flop, turn, river):
     col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
     with col1:
         st.subheader("Flop")
