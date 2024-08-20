@@ -14,6 +14,13 @@ river = st.session_state.deck.get_river()
 hero_hand = st.session_state.deck.get_hero()
 villain_hand = st.session_state.deck.get_villain()
 
+if 'flop' not in st.session_state:
+    st.session_state.flop = False
+if 'turn' not in st.session_state:
+    st.session_state.turn = False
+if 'river' not in st.session_state:
+    st.session_state.river = False
+
 
 st.subheader("Your Hand")
 hero_col1, hero_col2, hero_col3 = st.columns([1, 1, 3], gap="medium", vertical_alignment="top")
@@ -26,13 +33,22 @@ with hero_col2:
 col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
 with col1:
     st.subheader("Flop")
-    st.header(flop[0], divider="violet")
+    if st.session_state.flop:
+        st.header(flop[0], divider="violet")
+    else:
+        st.header(0, divider="violet")
 with col2:
     st.subheader("")
-    st.header(flop[1], divider="violet")
+    if st.session_state.flop:
+        st.header(flop[1], divider="violet")
+    else:
+        st.header(0, divider="violet")
 with col3:
     st.subheader("")
-    st.header(flop[2], divider="violet")
+    if st.session_state.flop:
+        st.header(flop[2], divider="violet")
+    else:
+        st.header(0, divider="violet")
 with col4:
     st.subheader("Turn")
     st.header(turn[0], divider="violet")
