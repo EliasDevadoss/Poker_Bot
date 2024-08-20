@@ -6,15 +6,12 @@ st.write(
     "Welcome to the minimalist Poker Bot. Designed by Elias Devadoss, Himal Pandey, and Marcus Lee."
 )
 
-def initiate():
-    deck = CardDeck()
-    flop = deck.get_flop()
-    turn = deck.get_turn()
-    river = deck.get_river()
-    hero_hand = deck.get_hero()
-    villain_hand = deck.get_villain()
-
-initiate()
+deck = CardDeck()
+flop = deck.get_flop()
+turn = deck.get_turn()
+river = deck.get_river()
+hero_hand = deck.get_hero()
+villain_hand = deck.get_villain()
 
 st.header("Your Hand")
 col01, col02, col03 = st.columns([1, 1, 3], gap="medium", vertical_alignment="top")
@@ -42,4 +39,4 @@ with col5:
 
 reset = st.button("RESET")
 if reset:
-    initiate()
+    deck = CardDeck()
