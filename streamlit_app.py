@@ -6,7 +6,9 @@ st.write(
     "Welcome to the minimalist Poker Bot. Designed by Elias Devadoss, Himal Pandey, and Marcus Lee."
 )
 
-if 'deck' not in st.session_state:
+#if 'deck' not in st.session_state:
+    #st.session_state.deck = CardDeck()
+def form_callback():
     st.session_state.deck = CardDeck()
 flop = st.session_state.deck.get_flop()
 turn = st.session_state.deck.get_turn()
@@ -51,7 +53,9 @@ st.radio("No Label", options, horizontal=True)
 confirm = st.button("Confirm")
 
 
-reset = st.button("New Hand", type="primary")
-if reset:
-    st.session_state.deck = CardDeck()
-    st.rerun
+reset_button = st.button(label='Reset', on_click=form_callback)
+
+#reset = st.button("New Hand", type="primary")
+#if reset:
+#    st.session_state.deck = CardDeck()
+#    st.rerun
