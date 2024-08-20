@@ -1,5 +1,6 @@
 import streamlit as st
 from card_deck import CardDeck
+import display_cards
 
 st.title("Poker 🃟 Bot.")
 st.write(
@@ -21,15 +22,7 @@ if 'turn' not in st.session_state:
 if 'river' not in st.session_state:
     st.session_state.river = False
 
-
-st.subheader("Your Hand")
-#possibly add opponent's hand
-hero_col1, hero_col2, hero_col3 = st.columns([1, 1, 3], gap="medium", vertical_alignment="top")
-with hero_col1:
-    st.header(hero_hand[0], divider="violet")
-with hero_col2:
-    st.header(hero_hand[1], divider="violet")
-
+display_cards.display_hero(hero_hand)
 
 col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
 with col1:
