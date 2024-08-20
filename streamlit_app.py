@@ -23,6 +23,7 @@ if 'river' not in st.session_state:
 
 
 st.subheader("Your Hand")
+#possibly add opponent's hand
 hero_col1, hero_col2, hero_col3 = st.columns([1, 1, 3], gap="medium", vertical_alignment="top")
 with hero_col1:
     st.header(hero_hand[0], divider="violet")
@@ -72,6 +73,7 @@ st.radio("No Label", options, horizontal=True, label_visibility="hidden")
 confirm = st.button("Confirm")
 if confirm:
     st.session_state.flop = True
+    st.rerun()
 
 
 reset = st.button("New Hand", type="primary")
