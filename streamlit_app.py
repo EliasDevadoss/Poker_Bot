@@ -51,10 +51,16 @@ with col3:
         st.header("|⨔|", divider="violet")
 with col4:
     st.subheader("Turn")
-    st.header(turn[0], divider="violet")
+    if st.session_state.turn:
+        st.header(turn[0], divider="violet")
+    else:
+        st.header("|⨔|", divider="violet")
 with col5:
     st.subheader("River")
-    st.header(river[0], divider="violet")
+    if st.session_state.river:
+        st.header(river[0], divider="violet")
+    else:
+        st.header("|⨔|", divider="violet")
 
 facing_bet = False
 if(facing_bet==False):
@@ -64,10 +70,11 @@ else:
 st.radio("No Label", options, horizontal=True, label_visibility="hidden")
 
 confirm = st.button("Confirm")
+if confirm:
+    st.session_state.flop = True
 
 
 reset = st.button("New Hand", type="primary")
 if reset:
     st.session_state.deck = CardDeck()
-    st.session_state.flop = True
     st.rerun()
