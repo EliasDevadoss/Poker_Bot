@@ -70,11 +70,14 @@ else:
 st.radio("No Label", options, horizontal=True, label_visibility="hidden")
 
 confirm = st.button("Confirm")
-if confirm:
-    st.session_state.flop = True
+#if confirm:
+    #st.session_state.flop = True
 
 
 reset = st.button("New Hand", type="primary")
 if reset:
     st.session_state.deck = CardDeck()
+    st.session_state.flop = False
+    st.session_state.turn = False
+    st.session_state.river = False
     st.rerun()
