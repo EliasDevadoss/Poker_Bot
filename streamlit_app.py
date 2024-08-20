@@ -36,7 +36,7 @@ with col1:
     if st.session_state.flop:
         st.header(flop[0], divider="violet")
     else:
-        st.header("|௹|", divider="violet")
+        st.header("|⨔|", divider="violet")
 with col2:
     st.subheader("")
     if st.session_state.flop:
@@ -48,7 +48,7 @@ with col3:
     if st.session_state.flop:
         st.header(flop[2], divider="violet")
     else:
-        st.header("|⫷|", divider="violet")
+        st.header("|⨔|", divider="violet")
 with col4:
     st.subheader("Turn")
     st.header(turn[0], divider="violet")
