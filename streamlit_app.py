@@ -70,8 +70,8 @@ else:
 st.radio("No Label", options, horizontal=True, label_visibility="hidden")
 
 confirm = st.button("Confirm")
-if confirm:
-    st.session_state.flop = True
+#if confirm:
+    #st.session_state.flop = True
 
 
 reset = st.button("New Hand", type="primary")
