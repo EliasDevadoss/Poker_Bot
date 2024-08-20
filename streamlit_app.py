@@ -8,7 +8,7 @@ st.write(
 
 tabs_font_css = """
 <style>
-div[class*="stTextArea"] label p {
+div[class*="stWrite"] label p {
   font-size: 40px;
 }
 </style>
