@@ -7,7 +7,7 @@ st.write(
 
 st.text_area("No Label", value="9♠️", height=100, label_visibility="hidden")
 
-col1, col2, col3, col4, col5 = st.columns(5, *, gap="medium", vertical_alignment="top")
+col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
 
 with col1:
     st.header("Flop")
