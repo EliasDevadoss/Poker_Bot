@@ -46,16 +46,16 @@ if(facing_bet==False):
     with opt_col1:
         check = st.button("Check")
     with opt_col2:
-        bet_small = st.button("Bet x")
+        open_small = st.button("Bet x")
     with opt_col3:
-        bet_big = st.button("Bet y")   
+        open_big = st.button("Bet y")   
 else:
     with opt_col1:
         fold = st.button("Fold")
     with opt_col2:
         call = st.button("Call")
     with opt_col3:
-        raise = st.button("Raise 3x")  
+        raise_bet = st.button("Raise 3x")  
 
 
 reset = st.button("RESET", type="primary")
