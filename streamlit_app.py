@@ -23,6 +23,7 @@ if 'river' not in st.session_state:
     st.session_state.river = False
 
 display_cards.display_players(hero_hand, villain_hand)
+st.divider()
 display_cards.display_board(flop, turn, river)
 
 facing_bet = False
