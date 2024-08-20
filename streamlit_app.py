@@ -31,7 +31,7 @@ if(facing_bet==False):
     options = ["Check", "Bet 1/3 Pot", "Bet 2/3 Pot", "Bet 3/2 Pot"]
 else:
     options = ["Fold", "Call", "Raise 3x"]
-st.radio("No Label", options, horizontal=True, label_visibility="hidden")
+st.radio("Your action:", options, horizontal=True)
 
 confirm = st.button("Confirm")
 if confirm:
