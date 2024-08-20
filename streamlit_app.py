@@ -14,7 +14,11 @@ hero_hand = deck.get_hero()
 villain_hand = deck.get_villain()
 
 st.header("Your Hand:")
-st.header(hero_hand[0] + ", " + hero_hand[1])
+col01, col02, col03 = st.columns([1, 1, 3], gap="medium", vertical_alignment="top")
+with col01:
+    st.header(hero_hand[0], divider="violet")
+with col02:
+    st.header(hero_hand[1], divider="violet")
 
 col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
 with col1:
