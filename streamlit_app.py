@@ -13,12 +13,14 @@ river = deck.get_river()
 hero_hand = deck.get_hero()
 villain_hand = deck.get_villain()
 
+
 st.subheader("Your Hand")
-col01, col02, col03 = st.columns([1, 1, 3], gap="medium", vertical_alignment="top")
-with col01:
+hero_col1, hero_col2, hero_col3 = st.columns([1, 1, 3], gap="medium", vertical_alignment="top")
+with hero_col1:
     st.header(hero_hand[0], divider="violet")
-with col02:
+with hero_col2:
     st.header(hero_hand[1], divider="violet")
+
 
 col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
 with col1:
@@ -37,6 +39,25 @@ with col5:
     st.subheader("River")
     st.header(river[0], divider="violet")
 
-reset = st.button("RESET")
+
+facing_bet = False
+opt_col1, opt_col2, opt_col3 = st.columns(3, gap="small", vertical_alignment="top")
+if(facing_bet==False):
+    with opt_col1:
+        check = st.button("Check")
+    with opt_col2:
+        bet_small = st.button("Bet x")
+    with opt_col3:
+        bet_big = st.button("Bet y")   
+else:
+    with opt_col1:
+        fold = st.button("Fold")
+    with opt_col2:
+        call = st.button("Call")
+    with opt_col3:
+        raise = st.button("Raise 3x")  
+
+
+reset = st.button("RESET", type="primary")
 if reset:
     deck = CardDeck()
