@@ -39,13 +39,13 @@ with col5:
     st.subheader("River")
     st.header(river[0], divider="violet")
 
-options = []
+options = ["", "", ""]
 facing_bet = False
 if(facing_bet==False):
     options = ["Check", "Bet x", "Bet y"]
 else:
     options = ["Fold", "Call", "Raise 3x"]
-st.radio(options, horizontal=True)
+st.radio("No Label", options, horizontal=True)
 
 
 reset = st.button("New Hand", type="primary")
