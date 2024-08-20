@@ -22,39 +22,8 @@ if 'turn' not in st.session_state:
 if 'river' not in st.session_state:
     st.session_state.river = False
 
-display_cards.display_hero(hero_hand)
-
-col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
-with col1:
-    st.subheader("Flop")
-    if st.session_state.flop:
-        st.header(flop[0], divider="violet")
-    else:
-        st.header("|⨔|", divider="violet")
-with col2:
-    st.subheader("")
-    if st.session_state.flop:
-        st.header(flop[1], divider="violet")
-    else:
-        st.header("|⨔|", divider="violet")
-with col3:
-    st.subheader("")
-    if st.session_state.flop:
-        st.header(flop[2], divider="violet")
-    else:
-        st.header("|⨔|", divider="violet")
-with col4:
-    st.subheader("Turn")
-    if st.session_state.turn:
-        st.header(turn[0], divider="violet")
-    else:
-        st.header("|⨔|", divider="violet")
-with col5:
-    st.subheader("River")
-    if st.session_state.river:
-        st.header(river[0], divider="violet")
-    else:
-        st.header("|⨔|", divider="violet")
+display_cards.display_players(hero_hand, villain_hand)
+display_cards.display_board(flop, turn, river)
 
 facing_bet = False
 if(facing_bet==False):
