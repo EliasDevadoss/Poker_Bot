@@ -20,7 +20,8 @@ col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="t
 
 with col1:
     st.header("Flop")
-    st.text_area("No Label", value="9♠️", key=1, label_visibility="hidden")
+    st.write("9♠️")
+    #st.text_area("No Label", value="9♠️", key=1, label_visibility="hidden")
 
 with col2:
     st.header("")
