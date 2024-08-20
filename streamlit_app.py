@@ -39,7 +39,7 @@ with col5:
     st.subheader("River")
     st.header(river[0], divider="violet")
 
-
+options = []
 facing_bet = False
 if(facing_bet==False):
     options = ["Check", "Bet x", "Bet y"]
