@@ -1,7 +1,11 @@
 import streamlit as st
 
 def display_players(hero, villain):
-    st.subheader("Your Hand")
+    header_col1, header_col2 = st.columns([3,2], gap="medium", vertical_alignment="top")
+    with header_col1:
+        st.subheader("Your Hand")
+    with header_col2:
+        st.subheader("Opponent's Hand")
     play_col1, play_col2, play_col3, play_col4, play_col5 = st.columns(5, gap="medium", vertical_alignment="top")
     with play_col1:
         st.header(hero[0], divider="violet")
