@@ -6,12 +6,13 @@ st.write(
     "Welcome to the minimalist Poker Bot. Designed by Elias Devadoss, Himal Pandey, and Marcus Lee."
 )
 
-deck = CardDeck()
-flop = deck.get_flop()
-turn = deck.get_turn()
-river = deck.get_river()
-hero_hand = deck.get_hero()
-villain_hand = deck.get_villain()
+if 'deck' not in st.session_state:
+    st.session_state.deck = CardDeck()
+flop = st.session_state.deck.get_flop()
+turn = st.session_state.deck.get_turn()
+river = st.session_state.deck.get_river()
+hero_hand = st.session_state.deck.get_hero()
+villain_hand = st.session_state.deck.get_villain()
 
 
 st.subheader("Your Hand")
@@ -47,7 +48,9 @@ else:
     options = ["Fold", "Call", "Raise 3x"]
 st.radio("No Label", options, horizontal=True)
 
+confirm = st.button("Confirm")
+
 
 reset = st.button("New Hand", type="primary")
-#if reset:
-#    deck = CardDeck()
+if reset:
+    st.session_state.deck = CardDeck()
