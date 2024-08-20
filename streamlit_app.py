@@ -42,10 +42,10 @@ with col5:
 
 facing_bet = False
 if(facing_bet==False):
-    options = ["Check", "Bet x", "Bet y"]
+    options = ["Check", "Bet 1/3 Pot", "Bet 2/3 Pot", "Bet 3/2 Pot"]
 else:
     options = ["Fold", "Call", "Raise 3x"]
-st.radio("No Label", options, horizontal=True, label=hidden)
+st.radio("No Label", options, horizontal=True, label_visibility="hidden")
 
 confirm = st.button("Confirm")
 
