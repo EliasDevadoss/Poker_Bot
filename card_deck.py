@@ -1,14 +1,6 @@
 import random
 
 class CardDeck:
-    
-    def __init__(self):
-        self.deck = [i for i in range(1, 53)]
-        self.cards = [0]*9 #[flop1, flop2, flop3, turn, river, hero1, hero2, vill1, vill2]
-        for i, c in enumerate(__cards):
-            rand = (int)(random.random() * len(deck))
-            __cards[i] = deck[rand]
-            deck.pop(rand)
 
     number_to_name = {
         1: 'A♠️',   14: 'A♦️',  27: 'K♣️',  40: 'K♥️',
@@ -26,20 +18,28 @@ class CardDeck:
         13: 'K♠️',  26: 'K♦️',  39: 'A♣️',  52: 'A♥️',
     }
 
-    def get_value(number):
-        return number_to_name.get(number, "Card value not found")
+    def __init__(self):
+        self.deck = [i for i in range(1, 53)]
+        self.cards = [0]*9 #[flop1, flop2, flop3, turn, river, hero1, hero2, vill1, vill2]
+        for i, c in enumerate(self.cards):
+            rand = (int)(random.random() * len(self.deck))
+            self.cards[i] = self.deck[rand]
+            self.deck.pop(rand)
 
-    def get_flop():
-        return [get_value(__cards[0]), get_value(__cards[1]), get_value(__cards[2])]
+    def get_value(self, number):
+        return self.number_to_name.get(number, "Card value not found")
 
-    def get_turn():
-        return [get_value(__cards[3])]
+    def get_flop(self):
+        return [self.get_value(self.cards[0]), self.get_value(self.cards[1]), self.get_value(self.cards[2])]
 
-    def get_river():
-        return [get_value(__cards[4])]
+    def get_turn(self):
+        return [self.get_value(self.cards[3])]
 
-    def get_hero():
-        return [get_value(__cards[5]), get_value(__cards[6])]
+    def get_river(self):
+        return [self.get_value(self.cards[4])]
 
-    def get_villain():
-        return [get_value(__cards[7]), get_value(__cards[8])]
+    def get_hero(self):
+        return [self.get_value(self.cards[5]), self.get_value(self.cards[6])]
+
+    def get_villain(self):
+        return [self.get_value(self.cards[7]), self.get_value(self.cards[8])]

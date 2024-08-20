@@ -1,5 +1,5 @@
 import streamlit as st
-import card_deck.py
+from card_deck import CardDeck
 
 st.title("Poker ♠️ Bot")
 st.write(
