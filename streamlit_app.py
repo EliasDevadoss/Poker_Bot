@@ -1,14 +1,26 @@
 import streamlit as st
 from card_deck import CardDeck
 import display_cards
+import os
+import openai
+import opponent_move
 
-#header
+# Retrieves the API key from environment variables
+api_key = os.getenv('OPENAI_API_KEY')
+
+# Checks if the API key was retrieved successfully
+if api_key is None:
+    st.error("API key not found! Make sure the environment variable is set correctly.")
+else:
+    openai.api_key = api_key
+
+# Header
 st.title("Poker 🃟 Bot.")
 st.write(
     "Welcome to the minimalist Poker Bot. Designed by Elias Devadoss, Himal Pandey, and Marcus Lee."
 )
 
-#initializes the deck of cards, as well as the board and hands
+# Initializes the deck of cards, as well as the board and hands
 if 'deck' not in st.session_state:
     st.session_state.deck = CardDeck()
 flop = st.session_state.deck.get_flop()
@@ -17,7 +29,7 @@ river = st.session_state.deck.get_river()
 hero_hand = st.session_state.deck.get_hero()
 villain_hand = st.session_state.deck.get_villain()
 
-#initializes the board to hidden
+# Initializes the board to hidden
 if 'flop' not in st.session_state:
     st.session_state.flop = False
 if 'turn' not in st.session_state:
@@ -25,7 +37,7 @@ if 'turn' not in st.session_state:
 if 'river' not in st.session_state:
     st.session_state.river = False
 
-#displays the hands and board
+# Displays the hands and board
 display_cards.display_players(hero_hand, villain_hand)
 st.divider()
 display_cards.display_board(flop, turn, river)
@@ -42,7 +54,7 @@ if confirm:
     st.session_state.flop = True
     st.rerun()
 
-#resets entire game to a new hand
+# Resets entire game to a new hand
 reset = st.button("New Hand", type="primary")
 if reset:
     st.session_state.deck = CardDeck()
