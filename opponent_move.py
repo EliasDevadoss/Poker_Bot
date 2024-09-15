@@ -14,7 +14,7 @@ def callAI():
     content = "Your hand is " + hand + ". The flop is " + flop + ",  the turn is " + turn + ", and the river is " + river + ". You are " + position +". What do you do and why?"
 
     #try:
-    completion = openai.beta.chat.completions.parse(
+    completion = openai.ChatCompletion.create(
         model="gpt-4o-mini",
         messages=[
             {
