@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from openai.error import InvalidRequestError, APIError
 
 class ChosenAction(BaseModel):
     action: str
@@ -33,10 +34,7 @@ def callAI():
             st.write(bot_response.parsed)
         elif bot_response.refusal:
             st.write(bot_response.refusal)
-    except Exception as e:
-        if type(e) == openai.LengthFinishReasonError:
-            st.write("Too many tokens: ", e)
-            pass
-        else:
-            st.write(e)
-            pass
+    except InvalidRequestError as e:
+        st.write(f"Invalid request error: {e}")
+    except APIError as e:
+        st.write(f"API error: {e}")
