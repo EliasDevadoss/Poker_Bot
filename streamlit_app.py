@@ -54,6 +54,8 @@ if confirm:
     st.session_state.flop = True
     st.rerun()
 
+opponent_move.callAI()
+
 # Resets entire game to a new hand
 reset = st.button("New Hand", type="primary")
 if reset:
