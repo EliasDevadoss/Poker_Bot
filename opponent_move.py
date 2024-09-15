@@ -4,8 +4,6 @@ class ChosenAction(BaseModel):
     action: str
 
 def callAI():
-    client = OpenAI()
-
     hand = "Js 9s"
     flop = "Jd Qs 3c"
     turn = "not out yet"
@@ -15,7 +13,7 @@ def callAI():
     content = "Your hand is " + hand + ". The flop is " + flop + ",  the turn is " + turn + ", and the river is " + river + ". You are " + position +". What do you do and why?"
 
     try:
-        completion = client.beta.chat.completions.parse(
+        completion = openai.beta.chat.completions.parse(
             model="gpt-4o-mini",
             messages=[
                 {
