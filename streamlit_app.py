@@ -1,7 +1,7 @@
 import streamlit as st
 from card_deck import CardDeck
 import display_cards
-
+import openai
 import opponent_move
 
 
