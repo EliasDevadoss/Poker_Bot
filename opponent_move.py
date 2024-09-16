@@ -1,10 +1,20 @@
 from pydantic import BaseModel
+import os
+import openai
 #from openai.error import InvalidRequestError, APIError
 
 class ChosenAction(BaseModel):
     action: str
 
 def callAI():
+    # Retrieves the API key from environment variables
+    api_key = os.getenv('OPENAI_API_KEY')
+
+    # Checks if the API key was retrieved successfully
+    if api_key is None:
+        st.error("API key not found! Make sure the environment variable is set correctly.")
+    else:
+        openai.api_key = api_key
     hand = "Js 9s"
     flop = "Jd Qs 3c"
     turn = "not out yet"

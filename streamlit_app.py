@@ -1,18 +1,10 @@
 import streamlit as st
 from card_deck import CardDeck
 import display_cards
-import os
-import openai
+
 import opponent_move
 
-# Retrieves the API key from environment variables
-api_key = os.getenv('OPENAI_API_KEY')
 
-# Checks if the API key was retrieved successfully
-if api_key is None:
-    st.error("API key not found! Make sure the environment variable is set correctly.")
-else:
-    openai.api_key = api_key
 
 # Header
 st.title("Poker 🃟 Bot.")
