@@ -36,8 +36,17 @@ def callAI():
                 "content": content
             }
         ],
-        response_format=ChosenAction,
+        #response_format=ChosenAction,
     )
+
+    # Extract the response
+    response_text = completion.choices[0].message['content']
+    
+    # Parse the response using the ChosenAction model
+    chosen_action = ChosenAction(action=response_text.strip())
+    
+    # Display the action
+    st.write(chosen_action.action)
 
     bot_response = completion.choices[0].message
     if bot_response.parsed:
