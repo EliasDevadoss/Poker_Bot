@@ -40,7 +40,10 @@ def callAI(flop, turn, river, villain_hand):
                 }
             ],
         )
-   
+        
+        # Extract the response content and parse it as JSON
+        response_text = completion.choices[0].message['content'].strip()
+
         try:
             # Parse the response into a Python dictionary (assuming JSON format)
             response_json = json.loads(response_text)
