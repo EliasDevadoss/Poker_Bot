@@ -40,7 +40,7 @@ def callAI(flop, turn, river, villain_hand):
                 }
             ],
         )
-        
+
         # Extract the response content and parse it as JSON
         response_text = completion.choices[0].message['content'].strip()
 
@@ -50,12 +50,10 @@ def callAI(flop, turn, river, villain_hand):
             
             # Validate with the ChosenAction model
             chosen_action = ChosenAction(**response_json)
-            st.write(f"Chosen action: {chosen_action.action}")
+            st.write(f"Chosen bot action: {chosen_action.action}")
 
         except (ValueError, json.JSONDecodeError):
             st.error("Error: The response from OpenAI is not a valid JSON or integer.")
 
-        # Display the action
-        st.write(chosen_action.action)
     except Exception as e:
         st.error(f"Error occurred: {e}")
