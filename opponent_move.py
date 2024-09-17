@@ -42,7 +42,7 @@ def callAI(flop, turn, river, villain_hand):
         )
 
         # Extract the response
-        response_text = json.dumps(completion.choices[0].message['content'].dict())
+        response_text = json.dumps((completion.choices[0].message['content']).dict())
         
         try:
             # Parse the response using the ChosenAction model
