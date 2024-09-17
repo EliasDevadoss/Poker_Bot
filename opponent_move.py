@@ -4,7 +4,7 @@ import openai
 import streamlit as st
 
 class ChosenAction(BaseModel):
-    action: str
+    action: int
 
 def callAI():
     # Retrieves the API key from environment variables
@@ -29,22 +29,25 @@ def callAI():
             messages=[
                 {
                     "role": "system",
-                    "content": "You are poker player that plays GTO (Game Theory Optimal). You are playing heads up against one person and attempting to play overall according to GTO. This includes bluffing some percentage of the time. Cards will be passed in by a char for value and a char for suit, such that Ad is the ace of diamonds and Ts is the ten of spades. Respond with 'f' for fold, 'k' for check', 'c' for call, 'b' for bet, and 'r' for raise."
+                    "content": "You are poker player that plays GTO (Game Theory Optimal). You are playing heads up against one person and attempting to play overall according to GTO. This includes bluffing some percentage of the time. Cards will be passed in by a char for value and a char for suit, such that A♦️ is the ace of diamonds and T♠️ is the ten of spades. Respond only with an int: '0' for fold, '1' for check', '2' for call, '3' for bet, and '4' for raise."
                 },
                 {
                     "role": "user",
                     "content": content
                 }
             ],
-            #response_format=ChosenAction,
         )
 
         # Extract the response
         response_text = completion.choices[0].message['content']
         
-        # Parse the response using the ChosenAction model
-        chosen_action = ChosenAction(action=response_text.strip())
-        
+        try:
+            # Parse the response using the ChosenAction model
+            chosen_action = ChosenAction(action=int(response_text.strip()))
+        except ValueError:
+            # Handle the case where the response cannot be converted to an integer
+            st.write("Error: The response from OpenAI is not a valid integer.")
+
         # Display the action
         st.write(chosen_action.action)
     except Exception as e:
