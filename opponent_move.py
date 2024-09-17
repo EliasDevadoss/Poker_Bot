@@ -37,6 +37,7 @@ def callAI(flop, turn, river, villain_hand):
                     "content": content
                 }
             ],
+            response_format = ChosenAction,
         )
 
         # Extract the response
