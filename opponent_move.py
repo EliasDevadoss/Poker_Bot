@@ -3,6 +3,7 @@ import os
 import openai
 import streamlit as st
 import card_deck
+import json
 
 class ChosenAction(BaseModel):
     action: int
@@ -41,7 +42,7 @@ def callAI(flop, turn, river, villain_hand):
         )
 
         # Extract the response
-        response_text = completion.choices[0].message['content']
+        response_text = json.dumps(completion.choices[0].message['content'].dict())
         
         try:
             # Parse the response using the ChosenAction model
