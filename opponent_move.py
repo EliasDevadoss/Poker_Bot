@@ -2,11 +2,12 @@ from pydantic import BaseModel
 import os
 import openai
 import streamlit as st
+import card_deck
 
 class ChosenAction(BaseModel):
     action: int
 
-def callAI():
+def callAI(flop, turn, river, villain_hand):
     # Retrieves the API key from environment variables
     api_key = os.getenv('OPENAI_API_KEY')
 
@@ -15,10 +16,10 @@ def callAI():
         st.error("API key not found! Make sure the environment variable is set correctly.")
     else:
         openai.api_key = api_key
-    hand = "Js 9s"
-    flop = "Jd Qs 3c"
-    turn = "not out yet"
-    river = "not out yet"
+    hand = villain_hand[0] + " " + villain_hand[1]
+    flop = flop[0] + " " + flop[1] + " " + flop[2]
+    turn = turn[0]
+    river = river[0]
     position = "out of position"
 
     content = "Your hand is " + hand + ". The flop is " + flop + ",  the turn is " + turn + ", and the river is " + river + ". You are " + position +". What do you do and why?"
