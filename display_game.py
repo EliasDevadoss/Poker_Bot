@@ -19,11 +19,11 @@ def display_players(hero, villain):
 def display_chips(hero_stack, villain_stack, pot):
     h_stack, pot_stack, v_stack = st.columns([1, 1, 1], gap="medium", vertical_alignment="top")
     with h_stack:
-        st.write("Your Stack: " + hero_stack)
+        st.write("Your Stack: " + str(hero_stack))
     with pot_stack:
-        st.write("Pot: " + pot)
+        st.write("Pot: " + str(pot))
     with v_stack:
-        st.write("Opponent's Stack: " + villain_stack)
+        st.write("Opponent's Stack: " + str(villain_stack))
 
 def display_board(flop, turn, river):
     col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
