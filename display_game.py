@@ -1,7 +1,7 @@
 import streamlit as st
 
 def display_players(hero, villain):
-    header_col1, header_col2 = st.columns([3,2], gap="medium", vertical_alignment="top")
+    header_col1, header_col2 = st.columns([3, 2], gap="medium", vertical_alignment="top")
     with header_col1:
         st.subheader("Your Hand")
     with header_col2:
@@ -15,6 +15,15 @@ def display_players(hero, villain):
         st.header("|⨔|", divider="violet")
     with play_col5:
         st.header("|⨔|", divider="violet")
+
+def display_chips(hero_stack, villain_stack, pot):
+    h_stack, pot_stack, v_stack = st.columns([1, 1, 1], gap="medium", vertical_alignment="top")
+    with h_stack:
+        st.write("Your Stack: " + hero_stack)
+    with pot_stack:
+        st.write("Pot: " + pot)
+    with v_stack:
+        st.write("Opponent's Stack: " + villain_stack)
 
 def display_board(flop, turn, river):
     col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")

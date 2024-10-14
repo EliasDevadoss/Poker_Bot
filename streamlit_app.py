@@ -1,9 +1,9 @@
 import streamlit as st
 from card_deck import CardDeck
+from chips import Chips
 import display_game
 import openai
 import opponent_move
-
 
 
 # Header
@@ -21,6 +21,13 @@ river = st.session_state.deck.get_river()
 hero_hand = st.session_state.deck.get_hero()
 villain_hand = st.session_state.deck.get_villain()
 
+# Initializes user stacks and pot
+if 'chips' not in st.session_state:
+    st.session_state.chips = Chips()
+hero_stack = st.session_state.chips.get_hero()
+villain_stack = st.session_state.chips.get_villain()
+pot = st.session_state.chips.get_pot()
+
 # Initializes the board to hidden
 if 'flop' not in st.session_state:
     st.session_state.flop = False
@@ -31,9 +38,11 @@ if 'river' not in st.session_state:
 
 # Displays the hands and board
 display_game.display_players(hero_hand, villain_hand)
+display_game.display_chips(hero_stack, villain_stack, pot)
 st.divider()
 display_game.display_board(flop, turn, river)
 
+# Shows user options dependent on opponent bet
 facing_bet = False
 if(facing_bet==False):
     options = ["Check", "Bet 1/3 Pot", "Bet 2/3 Pot", "Bet 3/2 Pot"]
@@ -46,6 +55,7 @@ if confirm:
     st.session_state.flop = True
     st.rerun()
 
+# Decides villain move
 opponent_move.callAI(flop, turn, river, villain_hand)
 
 # Resets entire game to a new hand
