@@ -17,7 +17,7 @@ def display_players(hero, villain):
         st.header("|⨔|", divider="violet")
 
 def display_chips(hero_stack, villain_stack, pot):
-    h_stack, pot_stack, v_stack = st.columns([1, 1, 1], gap="medium", vertical_alignment="top")
+    h_stack, pot_stack, v_stack = st.columns([2, 1, 2], gap="medium", vertical_alignment="top")
     with h_stack:
         st.write("Your Stack: " + str(hero_stack))
     with pot_stack:
