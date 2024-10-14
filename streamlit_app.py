@@ -1,6 +1,6 @@
 import streamlit as st
 from card_deck import CardDeck
-import display_cards
+import display_game
 import openai
 import opponent_move
 
@@ -9,7 +9,7 @@ import opponent_move
 # Header
 st.title("Poker 🃟 Bot.")
 st.write(
-    "Welcome to the minimalist Poker Bot. Designed by Elias Devadoss, Himal Pandey, and Marcus Lee."
+    "Welcome to the minimalist Poker Bot. Designed by Elias Devadoss."
 )
 
 # Initializes the deck of cards, as well as the board and hands
@@ -30,9 +30,9 @@ if 'river' not in st.session_state:
     st.session_state.river = False
 
 # Displays the hands and board
-display_cards.display_players(hero_hand, villain_hand)
+display_game.display_players(hero_hand, villain_hand)
 st.divider()
-display_cards.display_board(flop, turn, river)
+display_game.display_board(flop, turn, river)
 
 facing_bet = False
 if(facing_bet==False):
