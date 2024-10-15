@@ -9,9 +9,9 @@ def display_players(hero, villain, btn: bool):
             st.subheader("Your Hand")
     with header_col2:
         if btn:
-            st.subheader("Opponent's Hand")
+            st.subheader("Opponent Hand")
         else:
-            st.subheader("Opponent's Hand (D)")
+            st.subheader("Opponent Hand (D)")
     play_col1, play_col2, play_col3, play_col4, play_col5 = st.columns(5, gap="medium", vertical_alignment="top")
     with play_col1:
         st.header(hero[0], divider="violet")
@@ -29,7 +29,7 @@ def display_chips(hero_stack, villain_stack, pot):
     with pot_stack:
         st.write("Pot: " + str(pot))
     with v_stack:
-        st.write("Opponent's Stack: " + str(villain_stack))
+        st.write("Opponent Stack: " + str(villain_stack))
 
 def display_board(flop, turn, river):
     col1, col2, col3, col4, col5 = st.columns(5, gap="medium", vertical_alignment="top")
