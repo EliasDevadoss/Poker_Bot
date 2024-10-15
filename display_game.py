@@ -1,6 +1,6 @@
 import streamlit as st
 
-def display_players(hero, villain, btn):
+def display_players(hero, villain, btn: bool):
     header_col1, header_col2 = st.columns([3, 2], gap="medium", vertical_alignment="top")
     with header_col1:
         if btn:
