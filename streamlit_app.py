@@ -32,7 +32,7 @@ pot = st.session_state.chips.get_pot()
 # Initializes button
 if 'btn' not in st.session_state:
     if random.random() < 0.5:
-        st.session_state.btn = False # Hero on button
+        st.session_state.btn = True # Hero on button
     else:
         st.session_state.btn = False # Villain on button
 
@@ -70,7 +70,12 @@ opponent_move.callAI(flop, turn, river, villain_hand)
 reset = st.button("New Hand", type="primary")
 if reset:
     st.session_state.deck = CardDeck()
+    st.session_state.chips = Chips()
     st.session_state.flop = False
     st.session_state.turn = False
     st.session_state.river = False
+    if random.random() < 0.5:
+        st.session_state.btn = True # Hero on button
+    else:
+        st.session_state.btn = False # Villain on button
     st.rerun()
