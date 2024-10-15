@@ -32,6 +32,7 @@ pot = st.session_state.chips.get_pot()
 # Initializes button
 if 'btn' not in st.session_state:
     if random.random() < 0.5:
+        print("Yes, < 0.5")
         st.session_state.btn = True # Hero on button
     else:
         st.session_state.btn = False # Villain on button
