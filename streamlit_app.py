@@ -4,6 +4,7 @@ from chips import Chips
 import display_game
 import openai
 import opponent_move
+import random
 
 
 # Header
@@ -28,6 +29,13 @@ hero_stack = st.session_state.chips.get_hero()
 villain_stack = st.session_state.chips.get_villain()
 pot = st.session_state.chips.get_pot()
 
+# Initializes button
+if 'btn' not in st.session_state:
+    if random.random() < 0.5:
+        st.session_state.btn = True # Hero on button
+    else:
+        st.session_state.btn = False # Villain on button
+
 # Initializes the board to hidden
 if 'flop' not in st.session_state:
     st.session_state.flop = False
@@ -37,7 +45,7 @@ if 'river' not in st.session_state:
     st.session_state.river = False
 
 # Displays the hands and board
-display_game.display_players(hero_hand, villain_hand)
+display_game.display_players(hero_hand, villain_hand, st.session_state.btn)
 display_game.display_chips(hero_stack, villain_stack, pot)
 st.divider()
 display_game.display_board(flop, turn, river)

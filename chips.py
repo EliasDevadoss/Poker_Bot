@@ -14,3 +14,12 @@ class Chips:
     
     def get_pot(self):
         return self.pot
+    
+    def set_hero(self, newStack):
+        self.hero_stack = newStack
+
+    def set_villain(self, newStack):
+        self.villain_stack = newStack
+
+    def set_pot(self, newPot):
+        self.pot = newPot
