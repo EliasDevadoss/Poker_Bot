@@ -18,13 +18,24 @@ def callAI(flop, turn, river, villain_hand):
     else:
         openai.api_key = api_key
     
-    hand = villain_hand[0] + " " + villain_hand[1]
-    flop = flop[0] + " " + flop[1] + " " + flop[2]
-    turn = turn[0]
-    river = river[0]
-    position = "out of position"
 
-    content = f"Your hand is {hand}. The flop is {flop}, the turn is {turn}, and the river is {river}. You are {position}. What do you do and why?"
+    hand = villain_hand[0] + " " + villain_hand[1]
+    turn_s = ""
+    river_s = ""
+    if st.session_state.flop:
+        flop_s = "The flop is " + flop[0] + " " + flop[1] + " " + flop[2]
+        if st.session_state.turn:
+            turn_s =  ", the turn is " + turn[0]
+            if st.session_state.river:
+                river_s =  ", and the river is " + river[0]
+    else:
+        flop_s = "There are no cards out yet"
+    if st.session_state.btn:
+        position = "out of position"
+    else:
+        position = "in position"
+    
+    content = f"Your hand is {hand}. {flop_s}{turn_s}{river_s}. You are {position}. What do you do?"
 
     try:
         completion = openai.ChatCompletion.create(
