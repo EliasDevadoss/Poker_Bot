@@ -43,6 +43,8 @@ if 'turn' not in st.session_state:
     st.session_state.turn = False
 if 'river' not in st.session_state:
     st.session_state.river = False
+if 'game_end' not in st.session_state:
+    st.session_state.game_end = False
 
 # Displays the hands and board
 display_game.display_players(hero_hand, villain_hand, st.session_state.btn)

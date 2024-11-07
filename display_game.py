@@ -17,10 +17,16 @@ def display_players(hero, villain, btn: bool):
         st.header(hero[0], divider="violet")
     with play_col2:
         st.header(hero[1], divider="violet")
-    with play_col4:
-        st.header("|⨔|", divider="violet")
-    with play_col5:
-        st.header("|⨔|", divider="violet")
+    if st.session_state.game_end:
+        with play_col4:
+            st.header(villain[0], divider="violet")
+        with play_col5:
+            st.header(villain[1], divider="violet")
+    else:
+        with play_col4:
+            st.header("|⨔|", divider="violet")
+        with play_col5:
+            st.header("|⨔|", divider="violet")
 
 def display_chips(hero_stack, villain_stack, pot):
     h_stack, pot_stack, v_stack = st.columns([2, 1, 2], gap="medium", vertical_alignment="top")
