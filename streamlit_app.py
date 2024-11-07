@@ -53,19 +53,26 @@ st.divider()
 display_game.display_board(flop, turn, river)
 
 # Shows user options dependent on opponent bet
-bet = st.slider("Bet size:", 0, hero_stack, 0)
+if hero_stack > 0:
+    bet = st.slider("Bet size:", 0, hero_stack, 0)
+else:
+    bet = 0
 
 facing_bet = False
 if(facing_bet==False):
     options = ["Check", "Bet " + str(bet)]
 else:
     options = ["Fold", "Call", "Raise 3x"]
-st.radio("Your action:", options, horizontal=True)
+choice = st.radio("Your action:", options, horizontal=True)
 
 confirm = st.button("Confirm")
-if confirm:
-    st.session_state.chips.set_hero(hero_stack - bet)
-    st.session_state.chips.set_pot(pot + bet)
+if confirm & st.session_state.game_end == False:
+    if choice[:3] == "Bet":
+        st.session_state.chips.set_hero(hero_stack - bet)
+        st.session_state.chips.set_pot(pot + bet)
+    elif choice == "Fold":
+        st.session_state.game_end = True
+    
     if st.session_state.river == True:
         st.session_state.game_end = True
     elif st.session_state.turn == True:
