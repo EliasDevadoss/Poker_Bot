@@ -87,6 +87,7 @@ if reset:
     st.session_state.flop = False
     st.session_state.turn = False
     st.session_state.river = False
+    st.session_state.game_end = False
     if random.random() < 0.5:
         st.session_state.btn = True # Hero on button
     else:
