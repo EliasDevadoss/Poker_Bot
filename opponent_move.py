@@ -30,6 +30,8 @@ def callAI(flop, turn, river, villain_hand):
                 river_s =  ", and the river is " + river[0]
     else:
         flop_s = "There are no cards out yet"
+
+    #REMOVE LATER?
     if st.session_state.btn:
         position = "out of position"
     else:
