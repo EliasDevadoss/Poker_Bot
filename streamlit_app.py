@@ -51,9 +51,11 @@ st.divider()
 display_game.display_board(flop, turn, river)
 
 # Shows user options dependent on opponent bet
+bet = st.slider("Bet size:", 0, hero_stack, 0)
+
 facing_bet = False
 if(facing_bet==False):
-    options = ["Check", "Bet 1/3 Pot", "Bet 2/3 Pot", "Bet 3/2 Pot"]
+    options = ["Check", "Bet " + bet]
 else:
     options = ["Fold", "Call", "Raise 3x"]
 st.radio("Your action:", options, horizontal=True)
