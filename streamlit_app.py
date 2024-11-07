@@ -66,7 +66,9 @@ confirm = st.button("Confirm")
 if confirm:
     st.session_state.chips.set_hero(hero_stack - bet)
     st.session_state.chips.set_pot(pot + bet)
-    if st.session_state.turn == True:
+    if st.session_state.river == True:
+        st.session_state.game_end = True
+    elif st.session_state.turn == True:
         st.session_state.river = True
     elif st.session_state.flop == True:
         st.session_state.turn = True
