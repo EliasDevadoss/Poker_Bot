@@ -55,7 +55,7 @@ bet = st.slider("Bet size:", 0, hero_stack, 0)
 
 facing_bet = False
 if(facing_bet==False):
-    options = ["Check", "Bet " + bet]
+    options = ["Check", "Bet " + str(bet)]
 else:
     options = ["Fold", "Call", "Raise 3x"]
 st.radio("Your action:", options, horizontal=True)
