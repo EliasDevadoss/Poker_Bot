@@ -66,25 +66,26 @@ else:
 choice = st.radio("Your action:", options, horizontal=True)
 
 confirm = st.button("Confirm")
-if confirm & st.session_state.game_end == False:
+if confirm and not st.session_state.game_end:
     if choice[:3] == "Bet":
         st.session_state.chips.set_hero(hero_stack - bet)
         st.session_state.chips.set_pot(pot + bet)
     elif choice == "Fold":
         st.session_state.game_end = True
     
-    if st.session_state.river == True:
+    if st.session_state.river:
         st.session_state.game_end = True
-    elif st.session_state.turn == True:
+    elif st.session_state.turn:
         st.session_state.river = True
-    elif st.session_state.flop == True:
+    elif st.session_state.flop:
         st.session_state.turn = True
     else:
         st.session_state.flop = True
-    st.rerun()
 
-# Decides villain move
-opponent_move.callAI(flop, turn, river, villain_hand)
+    # Decides villain move
+    opponent_move.callAI(flop, turn, river, villain_hand)
+
+    st.rerun()
 
 # Resets entire game to a new hand
 reset = st.button("New Hand", type="primary")
