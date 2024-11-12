@@ -72,7 +72,7 @@ choice = st.radio("Your action:", options, horizontal=True)
 confirm = st.button("Confirm")
 
 if not st.session_state.action and not st.session_state.game_end:
-    opponent_move.callAI(flop, turn, river, villain_hand)
+    opponent_move.takeTurn(flop, turn, river, villain_hand)
 elif confirm and not st.session_state.game_end:
     if choice[:3] == "Bet":
         st.session_state.chips.set_hero(hero_stack - bet)
