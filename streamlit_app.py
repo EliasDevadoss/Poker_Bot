@@ -75,8 +75,7 @@ if not st.session_state.action and not st.session_state.game_end:
     opponent_move.takeTurn(flop, turn, river, villain_hand)
 elif confirm and not st.session_state.game_end:
     if choice[:3] == "Bet":
-        st.session_state.chips.set_hero(hero_stack - bet)
-        st.session_state.chips.set_pot(pot + bet)
+        st.session_state.chips.bet_hero(bet)
         st.session_state.action = False
     elif choice == "Fold":
         st.session_state.game_end = True

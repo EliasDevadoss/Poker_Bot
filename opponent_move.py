@@ -8,11 +8,28 @@ import json
 class ChosenAction(BaseModel):
     action: int
 
-def takeTurn(flop, turn, river, villain_hand):
-    callAI(flop, turn, river, villain_hand)
+def takeTurn(flop, turn, river, hand):
+    choice = callAI(flop, turn, river, hand)
+    if choice == 0:
+        # Fold
+        st.session_state.game_end = True
+    # Note: no change need be made for a Check (choice == 1)
+    elif choice == 2:
+        # Call
+        bet = st.session_state.chips.get_hero_bet()
+        st.session_state.chips.bet_villain(bet)
+    elif choice == 3:
+        #Bet
+        bet = 15
+        st.session_state.chips.bet_villain(bet)
+        st.session_state.facing_bet = True
+    elif choice == 4:
+        #Raise
+        st.session_state.chips.raise_villain()
+        st.session_state.facing_bet = True
+    else:
+        st.write("Sorry, there has been an error with the Bot's choice. Please reset.")
     st.session_state.action = True
-    #TODO Facing bet
-    #TODO actual action
     st.rerun()
 
 def callAI(flop, turn, river, villain_hand):
@@ -43,8 +60,10 @@ def callAI(flop, turn, river, villain_hand):
         position = "out of position"
     else:
         position = "in position"
+
+    pot = st.session_state.chips.get_pot()
     
-    content = f"Your hand is {hand}. {flop_s}{turn_s}{river_s}. You are {position}. What do you do?"
+    content = f"Your hand is {hand}. {flop_s}{turn_s}{river_s}. The pot is {pot}. You are {position}. What do you do?"
 
     try:
         completion = openai.ChatCompletion.create(
@@ -70,10 +89,12 @@ def callAI(flop, turn, river, villain_hand):
             
             # Validate with the ChosenAction model
             chosen_action = ChosenAction(**response_json)
-            st.write(f"Chosen bot action: {chosen_action.action}")
+            return chosen_action.action
 
         except (ValueError, json.JSONDecodeError):
             st.error("Error: The response from OpenAI is not a valid JSON or integer.")
+            return -1
 
     except Exception as e:
         st.error(f"Error occurred: {e}")
+        return -1
