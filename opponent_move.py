@@ -8,7 +8,7 @@ import json
 class ChosenAction(BaseModel):
     action: int
 
-def takeTurn(flop, turn, river, hand):
+def takeTurn(flop, turn, river, hand) -> bool:
     choice = callAI(flop, turn, river, hand)
     if choice == 0:
         # Fold
@@ -30,6 +30,9 @@ def takeTurn(flop, turn, river, hand):
         st.write("Sorry, there has been an error with the Bot's choice. Please reset.")
     st.session_state.action = True
     st.rerun()
+    if choice == 3 or choice == 4:
+        return True
+    return False
 
 def callAI(flop, turn, river, villain_hand):
     # Retrieves the API key from environment variables

@@ -50,6 +50,11 @@ if 'river' not in st.session_state:
 if 'game_end' not in st.session_state:
     st.session_state.game_end = False
 
+if st.session_state.game_end:
+    st.session_state.flop = True
+    st.session_state.turn = True
+    st.session_state.river = True
+
 # Displays the hands and board
 display_game.display_players(hero_hand, villain_hand, st.session_state.btn)
 display_game.display_chips(hero_stack, villain_stack, pot)
@@ -62,7 +67,6 @@ if hero_stack > 0:
 else:
     bet = 0
 
-#TODO opponent raise by/amount to call
 if st.session_state.facing_bet:
     callText = "Call " + str(st.session_state.chips.get_villain_bet())
     options = ["Fold", callText, "Raise 3x"]
@@ -72,35 +76,40 @@ choice = st.radio("Your action:", options, horizontal=True)
 
 confirm = st.button("Confirm")
 
-if not st.session_state.action and not st.session_state.game_end:
+if not st.session_state.action and not st.session_state.game_end: # Not hero's turn
     opponent_move.takeTurn(flop, turn, river, villain_hand)
 elif confirm and not st.session_state.game_end:
-    if choice[:3] == "Bet":
+    villRaise = False
+    if choice == "Check":
+        st.session_state.action = False
+        st.rerun()
+        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand)
+    elif choice[:3] == "Bet":
         st.session_state.chips.bet_hero(bet)
         st.session_state.action = False
+        st.rerun()
+        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand)
     elif choice == "Fold":
         st.session_state.game_end = True
-    elif choice == "Check":
-        st.session_state.action = False
     elif choice[:4] == "Call":
         st.session_state.chips.call_hero()
         st.session_state.facing_bet = False
     elif choice == "Raise 3x":
         st.session_state.chips.raise_hero()
         st.session_state.facing_bet = False
+        st.rerun()
+        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand)
     
-    if st.session_state.river:
-        st.session_state.game_end = True
-    elif st.session_state.turn:
-        st.session_state.river = True
-    elif st.session_state.flop:
-        st.session_state.turn = True
-    else:
-        st.session_state.flop = True
+    if not villRaise:
+        if st.session_state.river:
+            st.session_state.game_end = True
+        elif st.session_state.turn:
+            st.session_state.river = True
+        elif st.session_state.flop:
+            st.session_state.turn = True
+        else:
+            st.session_state.flop = True
 
-    st.rerun()
-    # Decides villain move
-    opponent_move.takeTurn(flop, turn, river, villain_hand)
 
 
 # Resets entire game to a new hand
