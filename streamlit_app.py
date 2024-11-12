@@ -64,7 +64,8 @@ else:
 
 #TODO opponent raise by/amount to call
 if st.session_state.facing_bet:
-    options = ["Fold", "Call ", "Raise 3x"]
+    callText = "Call " + str(st.session_state.chips.get_villain_bet())
+    options = ["Fold", callText, "Raise 3x"]
 else:
     options = ["Check", "Bet " + str(bet)]
 choice = st.radio("Your action:", options, horizontal=True)
@@ -81,7 +82,11 @@ elif confirm and not st.session_state.game_end:
         st.session_state.game_end = True
     elif choice == "Check":
         st.session_state.action = False
-    elif choice == "Call ":
+    elif choice[:4] == "Call":
+        st.session_state.chips.call_hero()
+        st.session_state.facing_bet = False
+    elif choice == "Raise 3x":
+        st.session_state.chips.raise_hero()
         st.session_state.facing_bet = False
     
     if st.session_state.river:
@@ -107,6 +112,7 @@ if reset:
     st.session_state.turn = False
     st.session_state.river = False
     st.session_state.game_end = False
+    st.session_state.facing_bet = False
     if random.random() < 0.5:
         st.session_state.btn = True # Hero on button
     else:

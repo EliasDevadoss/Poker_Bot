@@ -51,14 +51,24 @@ class Chips:
         self.bet_villain(self.hero_bet)
         self.hero_bet = 0
     
+    def raise_hero(self):
+        newBet = self.villain_bet * 3
+        if newBet > self.hero_stack:
+            self.hero_bet = self.hero_stack - self.villain_bet
+            self.pot = self.pot + self.hero_stack
+            self.hero_stack = 0
+        else:
+            self.hero_bet = newBet - self.villain_bet # Would need to be changed if stacks were unequal size in case of all-in
+            self.hero_stack = self.hero_stack - newBet
+            self.pot = self.pot + newBet
+    
     def raise_villain(self):
         newBet = self.hero_bet * 3
-        self.villain_bet = newBet - self.hero_bet # Would need to be changed if stacks were unequal size in case of all-in
         if newBet > self.villain_stack:
             self.villain_bet = self.villain_stack - self.hero_bet
             self.pot = self.pot + self.villain_stack
             self.villain_stack = 0
         else:
-            self.villain_bet = newBet - self.hero_bet
+            self.villain_bet = newBet - self.hero_bet # Would need to be changed if stacks were unequal size in case of all-in
             self.villain_stack = self.villain_stack - newBet
             self.pot = self.pot + newBet
