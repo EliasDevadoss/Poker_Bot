@@ -81,6 +81,8 @@ elif confirm and not st.session_state.game_end:
         st.session_state.game_end = True
     elif choice == "Check":
         st.session_state.action = False
+    elif choice == "Call ":
+        st.session_state.facing_bet = False
     
     if st.session_state.river:
         st.session_state.game_end = True

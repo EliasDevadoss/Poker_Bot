@@ -43,6 +43,14 @@ class Chips:
             self.villain_stack = self.villain_stack - betSize
             self.pot = self.pot + betSize
 
+    def call_hero(self):
+        self.bet_hero(self.villain_bet)
+        self.villain_bet = 0
+    
+    def call_villain(self):
+        self.bet_villain(self.hero_bet)
+        self.hero_bet = 0
+    
     def raise_villain(self):
         newBet = self.hero_bet * 3
         self.villain_bet = newBet - self.hero_bet # Would need to be changed if stacks were unequal size in case of all-in
