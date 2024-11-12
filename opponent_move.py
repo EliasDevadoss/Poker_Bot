@@ -8,6 +8,13 @@ import json
 class ChosenAction(BaseModel):
     action: int
 
+def takeTurn(flop, turn, river, villain_hand):
+    callAI(flop, turn, river, villain_hand)
+    st.session_state.action = True
+    #TODO Facing bet
+    #TODO actual action
+    st.rerun()
+
 def callAI(flop, turn, river, villain_hand):
     # Retrieves the API key from environment variables
     api_key = os.getenv('OPENAI_API_KEY')

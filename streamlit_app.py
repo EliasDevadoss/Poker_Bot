@@ -35,6 +35,10 @@ if 'btn' not in st.session_state:
         st.session_state.btn = True # Hero on button
     else:
         st.session_state.btn = False # Villain on button
+if 'facing_bet' not in st.session_state:
+    st.session_state.facing_bet = False
+if 'action' not in st.session_state: # Who the current action is on. Starts off-dealer
+    st.session_state.action = not st.session_state.btn
 
 # Initializes the board to hidden
 if 'flop' not in st.session_state:
@@ -58,20 +62,26 @@ if hero_stack > 0:
 else:
     bet = 0
 
-facing_bet = False
-if(facing_bet==False):
-    options = ["Check", "Bet " + str(bet)]
+#TODO opponent raise by/amount to call
+if st.session_state.facing_bet:
+    options = ["Fold", "Call ", "Raise 3x"]
 else:
-    options = ["Fold", "Call", "Raise 3x"]
+    options = ["Check", "Bet " + str(bet)]
 choice = st.radio("Your action:", options, horizontal=True)
 
 confirm = st.button("Confirm")
-if confirm and not st.session_state.game_end:
+
+if not st.session_state.action and not st.session_state.game_end:
+    opponent_move.takeTurn(flop, turn, river, villain_hand)
+elif confirm and not st.session_state.game_end:
     if choice[:3] == "Bet":
         st.session_state.chips.set_hero(hero_stack - bet)
         st.session_state.chips.set_pot(pot + bet)
+        st.session_state.action = False
     elif choice == "Fold":
         st.session_state.game_end = True
+    elif choice == "Check":
+        st.session_state.action = False
     
     if st.session_state.river:
         st.session_state.game_end = True
@@ -82,10 +92,10 @@ if confirm and not st.session_state.game_end:
     else:
         st.session_state.flop = True
 
-    # Decides villain move
-    opponent_move.callAI(flop, turn, river, villain_hand)
-
     st.rerun()
+    # Decides villain move
+    opponent_move.takeTurn(flop, turn, river, villain_hand)
+
 
 # Resets entire game to a new hand
 reset = st.button("New Hand", type="primary")
@@ -100,4 +110,5 @@ if reset:
         st.session_state.btn = True # Hero on button
     else:
         st.session_state.btn = False # Villain on button
+    st.session_state.action = not st.session_state.btn
     st.rerun()
