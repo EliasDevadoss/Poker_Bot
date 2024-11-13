@@ -82,23 +82,26 @@ elif confirm and not st.session_state.game_end:
     villRaise = False
     if choice == "Check":
         st.session_state.action = False
-        st.rerun()
-        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand)
+        if not st.session_state.btn:
+            st.rerun()
+            villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, "checked to you")
     elif choice[:3] == "Bet":
         st.session_state.chips.bet_hero(bet)
         st.session_state.action = False
         st.rerun()
-        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand)
+        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"bet {bet}")
     elif choice == "Fold":
         st.session_state.game_end = True
     elif choice[:4] == "Call":
         st.session_state.chips.call_hero()
         st.session_state.facing_bet = False
     elif choice == "Raise 3x":
+        origBet = st.session_state.chips.get_villain_bet()
         st.session_state.chips.raise_hero()
         st.session_state.facing_bet = False
+        newBet = st.session_state.chips.get_hero_bet()
         st.rerun()
-        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand)
+        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"raised your bet from {origBet} to {newBet}")
     
     if not villRaise:
         if st.session_state.river:

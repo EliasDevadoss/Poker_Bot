@@ -8,8 +8,8 @@ import json
 class ChosenAction(BaseModel):
     action: int
 
-def takeTurn(flop, turn, river, hand) -> bool:
-    choice = callAI(flop, turn, river, hand)
+def takeTurn(flop, turn, river, hand, choice="taken no action") -> bool:
+    choice = callAI(flop, turn, river, hand, choice)
     if choice == 0:
         # Fold
         st.session_state.game_end = True
@@ -34,7 +34,7 @@ def takeTurn(flop, turn, river, hand) -> bool:
         return True
     return False
 
-def callAI(flop, turn, river, villain_hand):
+def callAI(flop, turn, river, villain_hand, opp_move):
     # Retrieves the API key from environment variables
     api_key = os.getenv('OPENAI_API_KEY')
 
@@ -64,8 +64,9 @@ def callAI(flop, turn, river, villain_hand):
         position = "in position"
 
     pot = st.session_state.chips.get_pot()
+    stack = st.session_state.chips.get_villain()
     
-    content = f"Your hand is {hand}. {flop_s}{turn_s}{river_s}. The pot is {pot}. You are {position}. What do you do?"
+    content = f"Your hand is {hand}. {flop_s}{turn_s}{river_s}. The total pot is {pot}. You are {position}. Your stack is {stack}BB. Your opponent has {opp_move}. What do you do?"
 
     try:
         completion = openai.ChatCompletion.create(
