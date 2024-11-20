@@ -19,7 +19,7 @@ def takeTurn(flop, turn, river, hand, choice="taken no action") -> bool:
         st.session_state.chips.call_villain(bet)
     elif choice == 3:
         #Bet
-        bet = 15
+        bet = st.session_state.chips.get_pot() * 3
         st.session_state.chips.bet_villain(bet)
         st.session_state.facing_bet = True
     elif choice == 4:

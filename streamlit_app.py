@@ -82,12 +82,12 @@ if confirm and not st.session_state.game_end:
         st.session_state.action = False
         if not st.session_state.btn:
             st.rerun()
-            villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, "checked to you")
+            villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, "checked to you. You can check or bet.")
     elif choice[:3] == "Bet":
         st.session_state.chips.bet_hero(bet)
         st.session_state.action = False
         st.rerun()
-        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"bet {bet}")
+        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"bet {bet}. You cannot check or bet. You can only raise, call or fold.")
     elif choice == "Fold":
         st.session_state.game_end = True
         st.rerun()
@@ -101,7 +101,7 @@ if confirm and not st.session_state.game_end:
         st.session_state.facing_bet = False
         newBet = st.session_state.chips.get_hero_bet()
         st.rerun()
-        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"raised your bet from {origBet} to {newBet}")
+        villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"raised your bet from {origBet} to {newBet}. You cannot check or bet. You can only raise again, call, or fold.")
     
     if not villRaise:
         if st.session_state.river:
