@@ -90,9 +90,11 @@ if confirm and not st.session_state.game_end:
         villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"bet {bet}")
     elif choice == "Fold":
         st.session_state.game_end = True
+        st.rerun()
     elif choice[:4] == "Call":
         st.session_state.chips.call_hero()
         st.session_state.facing_bet = False
+        st.rerun()
     elif choice == "Raise 3x":
         origBet = st.session_state.chips.get_villain_bet()
         st.session_state.chips.raise_hero()
