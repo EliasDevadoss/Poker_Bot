@@ -33,12 +33,16 @@ pot = st.session_state.chips.get_pot()
 if 'btn' not in st.session_state:
     if random.random() < 0.5:
         st.session_state.btn = True # Hero on button
+        st.session_state.chips.bet_hero(1)
+        st.session_state.chips.raise_villain(2)
     else:
         st.session_state.btn = False # Villain on button
+        st.session_state.chips.bet_villain(1)
+        st.session_state.chips.raise_hero(2)
 if 'facing_bet' not in st.session_state:
     st.session_state.facing_bet = False
-if 'action' not in st.session_state: # Who the current action is on. Starts off-dealer
-    st.session_state.action = not st.session_state.btn
+if 'action' not in st.session_state: # Who the current action is on. Starts on the dealer after big blind bets
+    st.session_state.action = st.session_state.btn
 
 # Initializes the board to hidden
 if 'flop' not in st.session_state:

@@ -1,3 +1,4 @@
+import streamlit as st
 
 class Chips:
     
@@ -6,7 +7,7 @@ class Chips:
         self.villain_stack = 100
         self.hero_bet = 0
         self.villain_bet = 0
-        self.pot = 0
+        self.pot = 100
 
     def get_hero(self):
         return self.hero_stack
@@ -51,8 +52,11 @@ class Chips:
         self.bet_villain(self.hero_bet)
         self.hero_bet = 0
     
-    def raise_hero(self):
-        newBet = self.villain_bet * 3
+    def raise_hero(self, val = 0):
+        if val != 0:
+            newBet = val
+        else:
+            newBet = self.villain_bet * 3
         if newBet > self.hero_stack:
             self.hero_bet = self.hero_stack - self.villain_bet
             self.pot = self.pot + self.hero_stack
@@ -62,8 +66,11 @@ class Chips:
             self.hero_stack = self.hero_stack - newBet
             self.pot = self.pot + newBet
     
-    def raise_villain(self):
-        newBet = self.hero_bet * 3
+    def raise_villain(self, val = 0):
+        if val != 0:
+            newBet = val
+        else:
+            newBet = self.hero_bet * 3
         if newBet > self.villain_stack:
             self.villain_bet = self.villain_stack - self.hero_bet
             self.pot = self.pot + self.villain_stack

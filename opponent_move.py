@@ -19,7 +19,7 @@ def takeTurn(flop, turn, river, hand, choice="taken no action") -> bool:
         st.session_state.chips.call_villain(bet)
     elif choice == 3:
         #Bet
-        bet = st.session_state.chips.get_pot() * 3
+        bet = int(st.session_state.chips.get_pot() / 3)
         st.session_state.chips.bet_villain(bet)
         st.session_state.facing_bet = True
     elif choice == 4:
@@ -57,16 +57,16 @@ def callAI(flop, turn, river, villain_hand, opp_move):
     else:
         flop_s = "There are no cards out yet"
 
-    #REMOVE LATER?
+
     if st.session_state.btn:
         position = "out of position"
     else:
         position = "in position"
 
     pot = st.session_state.chips.get_pot()
-    stack = st.session_state.chips.get_villain()
+    stack = st.session_state.chips.get_villain() / 2
     
-    content = f"Your hand is {hand}. {flop_s}{turn_s}{river_s}. The total pot is {pot}. You are {position}. Your stack is {stack}BB. Your opponent has {opp_move}. What do you do?"
+    content = f"Your hand is {hand}. You are {position}. {flop_s}{turn_s}{river_s}. The total pot is {pot}. Your stack is {stack}BB. Your opponent has {opp_move}. What do you do?"
 
     try:
         completion = openai.ChatCompletion.create(
