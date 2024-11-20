@@ -7,7 +7,7 @@ class Chips:
         self.villain_stack = 100
         self.hero_bet = 0
         self.villain_bet = 0
-        self.pot = 100
+        self.pot = 0
 
     def get_hero(self):
         return self.hero_stack
