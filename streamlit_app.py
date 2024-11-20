@@ -76,9 +76,7 @@ choice = st.radio("Your action:", options, horizontal=True)
 
 confirm = st.button("Confirm")
 
-if not st.session_state.action and not st.session_state.game_end: # Not hero's turn
-    opponent_move.takeTurn(flop, turn, river, villain_hand)
-elif confirm and not st.session_state.game_end:
+if confirm and not st.session_state.game_end:
     villRaise = False
     if choice == "Check":
         st.session_state.action = False
@@ -112,6 +110,8 @@ elif confirm and not st.session_state.game_end:
             st.session_state.turn = True
         else:
             st.session_state.flop = True
+elif not st.session_state.action and not st.session_state.game_end: # Not hero's turn
+    opponent_move.takeTurn(flop, turn, river, villain_hand)
 
 
 
