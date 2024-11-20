@@ -35,12 +35,15 @@ if 'btn' not in st.session_state:
         st.session_state.btn = True # Hero on button
         st.session_state.chips.bet_hero(1)
         st.session_state.chips.raise_villain(2)
+        if 'facing_bet' not in st.session_state:
+            st.session_state.facing_bet = True
     else:
         st.session_state.btn = False # Villain on button
         st.session_state.chips.bet_villain(1)
         st.session_state.chips.raise_hero(2)
-if 'facing_bet' not in st.session_state:
-    st.session_state.facing_bet = False
+        if 'facing_bet' not in st.session_state:
+            st.session_state.facing_bet = False
+        opponent_move.takeTurn(flop, turn, river, villain_hand, "put in the big blind (2) as a raise to your small blind (1). You can call, raise, or fold. You cannot check or bet.")
 if 'action' not in st.session_state: # Who the current action is on. Starts on the dealer after big blind bets
     st.session_state.action = st.session_state.btn
 
@@ -130,14 +133,15 @@ if reset:
     st.session_state.turn = False
     st.session_state.river = False
     st.session_state.game_end = False
-    st.session_state.facing_bet = False
     if random.random() < 0.5:
         st.session_state.btn = True # Hero on button
         st.session_state.chips.bet_hero(1)
         st.session_state.chips.raise_villain(2)
+        st.session_state.facing_bet = True
     else:
         st.session_state.btn = False # Villain on button
         st.session_state.chips.bet_villain(1)
         st.session_state.chips.raise_hero(2)
+        st.session_state.facing_bet = False
     st.session_state.action = st.session_state.btn
     st.rerun()
