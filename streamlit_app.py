@@ -97,11 +97,9 @@ if confirm and not st.session_state.game_end:
         villRaise = opponent_move.takeTurn(flop, turn, river, villain_hand, f"bet {bet}. You cannot check or bet. You can only raise, call or fold.")
     elif choice == "Fold":
         st.session_state.game_end = True
-        st.rerun()
     elif choice[:4] == "Call":
         st.session_state.chips.call_hero()
         st.session_state.facing_bet = False
-        st.rerun()
     elif choice == "Raise 3x":
         origBet = st.session_state.chips.get_villain_bet()
         st.session_state.chips.raise_hero()
@@ -119,6 +117,7 @@ if confirm and not st.session_state.game_end:
             st.session_state.turn = True
         else:
             st.session_state.flop = True
+        st.rerun()
 elif not st.session_state.action and not st.session_state.game_end: # Not hero's turn
     opponent_move.takeTurn(flop, turn, river, villain_hand)
 
