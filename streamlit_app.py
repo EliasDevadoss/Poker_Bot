@@ -133,7 +133,11 @@ if reset:
     st.session_state.facing_bet = False
     if random.random() < 0.5:
         st.session_state.btn = True # Hero on button
+        st.session_state.chips.bet_hero(1)
+        st.session_state.chips.raise_villain(2)
     else:
         st.session_state.btn = False # Villain on button
-    st.session_state.action = not st.session_state.btn
+        st.session_state.chips.bet_villain(1)
+        st.session_state.chips.raise_hero(2)
+    st.session_state.action = st.session_state.btn
     st.rerun()
